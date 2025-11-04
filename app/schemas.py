@@ -1,66 +1,3 @@
-# from pydantic import BaseModel, Field
-# from typing import Literal, List, Optional, Dict, Any
-# from uuid import uuid4
-# from datetime import datetime
-#
-#
-# class MessagePart(BaseModel):
-#     kind: Literal["text", "data"]
-#     text: str
-#     data: Optional[List[Dict[str, Any]]] = None
-#
-#
-# class A2AMessage(BaseModel):
-#     kind: Literal["message"] = "message"
-#     role: Literal["user", "agent"]
-#     parts: List[MessagePart]
-#     messageId: str = Field(default_factory=lambda: str(uuid4()))
-#     metadata: Optional[Dict[str, Any]] = None
-#
-# class MessageConfiguration(BaseModel):
-#     acceptedOutputModes: Optional[List[str]] = None
-#     historyLength: Optional[int] = 0
-#     pushNotificationConfig: Optional[Dict[str, Any]] = None
-#     blocking: Optional[bool] = True
-#
-#
-# class MessageParams(BaseModel):
-#     message: A2AMessage
-#     configuration: Optional[MessageConfiguration] = None
-#
-#
-# class JSONRPCRequest(BaseModel):
-#     jsonrpc: Literal["2.0"]
-#     id: str
-#     method: Literal["message/send"]
-#     params: MessageParams
-#
-#
-# class TaskStatus(BaseModel):
-#     state: Literal["completed"]
-#     timestamp: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
-#     message: A2AMessage
-#
-#
-# class Artifact(BaseModel):
-#     artifactId: str = Field(default_factory=lambda: str(uuid4()))
-#     name: str
-#     parts: List[MessagePart]
-#
-#
-# class TaskResult(BaseModel):
-#     id: str
-#     kind: Literal["task"] = "task"
-#     status: TaskStatus
-#     artifacts: List[Artifact] = []
-#     history: List[A2AMessage] = []
-#
-#
-# class JSONRPCResponse(BaseModel):
-#     jsonrpc: Literal["2.0"] = "2.0"
-#     id: str
-#     result: Optional[TaskResult] = None
-#     error: Optional[Dict[str, Any]] = None
 from uuid import uuid4
 
 from pydantic import BaseModel, Field
@@ -83,9 +20,6 @@ class MessagePartData(BaseModel):
 class MessagePartText(BaseModel):
     kind: Literal["text"]
     text: str
-
-
-# MessagePart: TypeAlias = MessagePartText | MessagePartData
 
 
 # ---- Metadata ----
