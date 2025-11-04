@@ -18,7 +18,7 @@ def generate_anagrams(word: str):
         response = model.generate_content(
             contents=f"Generate upper-case anagrams of the word - {word}. For example - if the word is 'cat', return 'CAT,ACT'"
                      f"ONLY RETURN VALID ENGLISH WORDS"
-                     f"if there are no valid anagrams simply generate 'No Valid Anagrams Found'"
+                     f"if there are no valid anagrams simply generate 'No Valid Anagrams Found for {word}'"
         )
 
         result = response.text
